@@ -1,0 +1,23 @@
+.popup__description {
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	width: 27.96vw;
+	height: 27px;
+	padding: 0;
+	margin: 0 auto 48px auto;
+}
+
+@media screen and (min-width:1280px) {
+	.popup__description {
+		width: 358px;
+	}
+}
+
+@media screen and (max-width:576px) {
+	.popup__description {
+		width: 74.375vw;
+		margin-bottom: 45px;
+	}
+}

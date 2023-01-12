@@ -6,4 +6,11 @@
 	background-color: #fff;
 	margin: 0 15px 0 auto;
 	padding: 0;
+	opacity: 1;
+	transition: opacity 1s ease;
+}
+
+.elements__like:hover {
+	cursor: pointer;
+	opacity: 0.5;
 }
