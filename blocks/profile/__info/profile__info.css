@@ -2,15 +2,19 @@
 	color: #fff;
 	display: flex;
 	flex-direction: column;
-	width: max-content;
+	width: min-content;
 	align-items: baseline;
-	width: 26.25vw;
 }
 
 @media screen and (min-width:1280px) {
 	.profile__info {
-		width: 336px;;
+		width: 336px;
 	}
 }
 
-
+@media screen and (max-width:576px) {
+	.profile__info {
+		width: 88.125vw;
+		text-align: center;
+	}
+}

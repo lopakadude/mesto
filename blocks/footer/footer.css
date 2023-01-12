@@ -1,16 +1,17 @@
-.content {
+.footer {
 	width: 68.75%;
-	margin: 0 auto;
+	margin: 0 auto 60px auto;
 }
 
 @media screen and (min-width: 1280px) {
-	.content {
+	.footer {
 		width: 880px;
 	}
 }
 
 @media screen and (max-width:576px) {
-	.content {
+	.footer {
 		width: 88.125%;
+		margin-bottom: 36px;
 	}
 }
