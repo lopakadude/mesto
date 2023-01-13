@@ -6,7 +6,6 @@
 	let enterDescription = popup.querySelector('.popup__input_target_description')
 	let openBtn = document.querySelector('.profile__edit-btn')
 	let closeBtn = popup.querySelector('.popup__close')
-	let saveBtn = popup.querySelector('.popup__submit')
 
 function openPopup() {
 	popup.classList.add('popup_opened')
