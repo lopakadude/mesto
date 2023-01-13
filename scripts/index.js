@@ -1,4 +1,5 @@
 	let popup = document.querySelector('.popup')
+	let form = popup.querySelector('.popup__form')
 	let nameUser = document.querySelector('.profile__name')
 	let description = document.querySelector('.profile__description')
 	let enterName = popup.querySelector('.popup__input_target_name')
@@ -9,14 +10,12 @@
 
 function openPopup() {
 	popup.classList.add('popup_opened')
-	document.querySelector('.popup_opened').style = 'display: flex'
-	enterName.value = nameUser.innerText
-	enterDescription.value = description.innerText
+	enterName.value = nameUser.textContent
+	enterDescription.value = description.textContent
 }
 
 function closePopup(){
 	popup.classList.remove('popup_opened') 
-	document.querySelector('.popup').style = 'display: none'
 }
 
 function submit(evt){
@@ -28,5 +27,5 @@ function submit(evt){
 
 openBtn.addEventListener('click', openPopup);
 closeBtn.addEventListener('click', closePopup);
-saveBtn.addEventListener('click', submit)
+form.addEventListener('submit', submit)
 
