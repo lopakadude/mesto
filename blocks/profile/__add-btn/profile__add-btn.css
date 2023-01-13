@@ -3,7 +3,7 @@
 	height: 50px;
 	background-image: url(../../../Images/Profile/Add-Button.svg);
 	background-size: cover;
-	background-color: #000;
+	background-color: transparent;
 	border: none;
 	margin: 0 0 0 auto;
 	padding: 0;
