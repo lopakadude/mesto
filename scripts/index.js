@@ -1,11 +1,12 @@
-	let popup = document.querySelector('.popup')
-	let form = popup.querySelector('.popup__form')
-	let nameUser = document.querySelector('.profile__name')
-	let description = document.querySelector('.profile__description')
-	let enterName = popup.querySelector('.popup__input_target_name')
-	let enterDescription = popup.querySelector('.popup__input_target_description')
-	let openBtn = document.querySelector('.profile__edit-btn')
-	let closeBtn = popup.querySelector('.popup__close')
+	const popup = document.querySelector('.popup')
+	const form = popup.querySelector('.popup__form')
+	const nameUser = document.querySelector('.profile__name')
+	const description = document.querySelector('.profile__description')
+	const enterName = popup.querySelector('.popup__input_target_name')
+	const enterDescription = popup.querySelector('.popup__input_target_description')
+	const openBtn = document.querySelector('.profile__edit-btn')
+	const closeBtn = popup.querySelector('.popup__close')
+	const likeArray = document.querySelectorAll('.elements__like')
 
 function openPopup() {
 	popup.classList.add('popup_opened')
@@ -24,7 +25,17 @@ function submit(evt){
 		closePopup()
 }
 
+
+
+
+likeArray.forEach(function(button) {
+	button.addEventListener('click', () => {
+		button.classList.toggle('elements__like_active');
+	})
+})
+
+
+
 openBtn.addEventListener('click', openPopup);
 closeBtn.addEventListener('click', closePopup);
 form.addEventListener('submit', submit)
-
