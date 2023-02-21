@@ -56,7 +56,7 @@ function buildCard(item) {
 		popupImage.src = item.link
 		popupImage.alt = item.name
 		popupCaption.textContent = item.name
-		openPopup(popupImage)
+		openPopup(popupFigure)
 	})
 	return cardElement
 }
@@ -92,7 +92,7 @@ function addCard(cardElement) {
 
 formProfile.addEventListener('submit', submitProfile)
 formCard.addEventListener('submit', submitCards)
-initialCards.forEach(function(item) {
+initialCards.forEach(function (item) {
 	cardElements.append(buildCard(item))
 })
 
