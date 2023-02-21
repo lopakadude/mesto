@@ -1,0 +1,10 @@
+.popup-image__name {
+	font-size: 12px;
+	line-height: 15px;
+	color: #FFFFFF;
+	font-weight: 400;
+	width: 291px;
+	text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
