@@ -7,4 +7,7 @@
 	text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+	align-self: self-start;
+	padding: 0;
+	margin: 8px 0 0 0;
 }
