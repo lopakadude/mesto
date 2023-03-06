@@ -69,6 +69,8 @@ function closePopup(popup) {
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
 	popup.addEventListener('click', detectClickOverlay);
+	document.addEventListener('keydown', handlePopupCloseEsc);
+
 }
 
 function submitProfile(evt) {
@@ -85,6 +87,7 @@ function submitCards(evt) {
 		link: enterLinkOfPlace.value
 	};
 	addCard(buildCard(inputValue));
+	formCard.reset();
 	closePopup(popupCard)
 }
 
@@ -104,9 +107,7 @@ function handlePopupCloseEsc(evt) {
 function detectClickOverlay(evt) {
 	if (evt.target === evt.currentTarget) {
 		const openedPopup = document.querySelector('.popup_opened');
-		if (openedPopup) {
-			closePopup(openedPopup)
-		}
+		closePopup(openedPopup)
 	}
 }
 
@@ -124,18 +125,19 @@ buttonsClosePopup.forEach((buttonClose) => {
 buttonOpenPopupEditProfile.addEventListener('click', () => {
 	enterName.value = nameUser.textContent;
 	enterDescription.value = description.textContent;
+	resetError(formProfile, validationSettings);
 	openPopup(popupProfile);
 })
 
 buttonOpenPopupAddCard.addEventListener('click', () => {
-	formCard.reset();
 	openPopup(popupCard);
+	resetError(formCard, validationSettings);
 })
 
 
 
 
-document.addEventListener('keydown', handlePopupCloseEsc)
+
 
 
 
