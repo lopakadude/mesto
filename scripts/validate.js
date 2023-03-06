@@ -4,7 +4,7 @@ const validationSettings = {
 	submitButtonSelector: '.popup__submit',
 	inactiveSubmitClass: 'popup__submit_disabled',
 	inputErrorClass: 'popup__input_type_error',
-	errorClass: 'popup__error_visible',
+	errorClass: 'popup__input-error_visible',
 }
 
 const showInputError = (formElement, inputElement, errorMessage, validationSettings) => {

@@ -64,6 +64,7 @@ function buildCard(item) {
 function closePopup(popup) {
 	popup.classList.remove('popup_opened');
 	popup.removeEventListener('click', detectClickOverlay);
+	document.removeEventListener('keydown', handlePopupCloseEsc);
 }
 
 function openPopup(popup) {
@@ -98,9 +99,7 @@ function addCard(cardElement) {
 function handlePopupCloseEsc(evt) {
 	if (evt.key === 'Escape') {
 		const openedPopup = document.querySelector('.popup_opened');
-		if (openedPopup) {
-			closePopup(openedPopup)
-		}
+		closePopup(openedPopup)
 	}
 }
 
