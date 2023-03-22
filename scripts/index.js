@@ -1,21 +1,19 @@
-const popupProfile = document.querySelector('.popup-profile')
-const formProfile = document.querySelector('.popup-profile__form')
-const popupCard = document.querySelector('.popup-card')
-const formCard = document.querySelector('.popup-card__form')
-const popupFigure = document.querySelector('.popup-image')
-const popupImage = popupFigure.querySelector('.popup-image__image')
-const popupCaption = popupFigure.querySelector('.popup-image__name')
-const nameUser = document.querySelector('.profile__name')
-const description = document.querySelector('.profile__description')
-const enterName = formProfile.querySelector('.popup__input_target_name')
-const enterDescription = formProfile.querySelector('.popup__input_target_description')
-const enterNameOfPlace = formCard.querySelector('.popup__input_target_name-card')
-const enterLinkOfPlace = formCard.querySelector('.popup__input_target_link')
-const buttonOpenPopupEditProfile = document.querySelector('.profile__edit-btn')
-const buttonOpenPopupAddCard = document.querySelector('.profile__add-btn')
-const buttonsClosePopup = document.querySelectorAll('.popup__close')
-const cardTemplate = document.querySelector('.elements__elemental').content
-const cardElements = document.querySelector('.elements')
+import { Card } from "./Card.js"
+import { validationSettings, FormValidator } from "./FormValidator.js";
+const popupProfile = document.querySelector('.popup-profile');
+const formProfile = document.querySelector('.popup-profile__form');
+const popupCard = document.querySelector('.popup-card');
+const formCard = document.querySelector('.popup-card__form');
+const popupFigure = document.querySelector('.popup-image');
+const nameUser = document.querySelector('.profile__name');
+const description = document.querySelector('.profile__description');
+const enterName = formProfile.querySelector('.popup__input_target_name');
+const enterDescription = formProfile.querySelector('.popup__input_target_description');
+const enterNameOfPlace = formCard.querySelector('.popup__input_target_name-card');
+const enterLinkOfPlace = formCard.querySelector('.popup__input_target_link');
+const buttonOpenPopupEditProfile = document.querySelector('.profile__edit-btn');
+const buttonOpenPopupAddCard = document.querySelector('.profile__add-btn');
+const buttonsClosePopup = document.querySelectorAll('.popup__close');
 const initialCards = [{
 	name: 'Архыз',
 	link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -36,30 +34,7 @@ const initialCards = [{
 	link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
 }];
 
-function buildCard(item) {
-	const cardElement = cardTemplate.querySelector('.elements__element').cloneNode(true)
-	const buttonLike = cardElement.querySelector('.elements__like')
-	const deleteBtn = cardElement.querySelector('.elements__delete')
-	const smallImage = cardElement.querySelector('.elements__image')
-	const nameImage = cardElement.querySelector('.elements__name')
-	const image = cardElement.querySelector('.elements__image')
-	nameImage.textContent = item.name
-	image.src = item.link
-	image.alt = item.name
-	buttonLike.addEventListener('click', () => {
-		buttonLike.classList.toggle('elements__like_active');
-	})
-	deleteBtn.addEventListener('click', () => {
-		cardElement.remove()
-	})
-	smallImage.addEventListener('click', () => {
-		popupImage.src = item.link
-		popupImage.alt = item.name
-		popupCaption.textContent = item.name
-		openPopup(popupFigure)
-	})
-	return cardElement
-}
+
 
 function closePopup(popup) {
 	popup.classList.remove('popup_opened');
@@ -74,6 +49,19 @@ function openPopup(popup) {
 
 }
 
+function createCard(cardElement) {
+	return  new Card(cardElement, '.elements__template', handleFullScreenImage).buildCard();
+} 
+
+function renderCard(cardElement) {
+	document.querySelector('.elements').prepend(cardElement)
+}
+
+function validation(formElement,validationSettings) {
+	return new FormValidator(formElement,validationSettings).enableValidation()
+}
+
+
 function submitProfile(evt) {
 	evt.preventDefault();
 	nameUser.textContent = enterName.value;
@@ -87,14 +75,11 @@ function submitCards(evt) {
 		name: enterNameOfPlace.value,
 		link: enterLinkOfPlace.value
 	};
-	addCard(buildCard(inputValue));
+	renderCard(createCard(inputValue));
 	formCard.reset();
 	closePopup(popupCard)
 }
 
-function addCard(cardElement) {
-	cardElements.prepend(cardElement)
-}
 
 function handlePopupCloseEsc(evt) {
 	if (evt.key === 'Escape') {
@@ -110,33 +95,47 @@ function detectClickOverlay(evt) {
 	}
 }
 
-formProfile.addEventListener('submit', submitProfile)
-formCard.addEventListener('submit', submitCards)
-initialCards.forEach(function (item) {
-	cardElements.append(buildCard(item))
+formProfile.addEventListener('submit', submitProfile);
+formCard.addEventListener('submit', submitCards);
+initialCards.forEach((cardElement) => {
+renderCard(createCard(cardElement));
 })
+
 
 buttonsClosePopup.forEach((buttonClose) => {
 	const popup = buttonClose.closest('.popup')
 	buttonClose.addEventListener('click', () => closePopup(popup));
 })
 
+const validationOfProfileForm = new FormValidator(formProfile, validationSettings);
+
+const validationOfCardForm = new FormValidator(formCard, validationSettings);
+
+validationOfProfileForm.enableValidation();
+validationOfCardForm.enableValidation();
+
 buttonOpenPopupEditProfile.addEventListener('click', () => {
 	enterName.value = nameUser.textContent;
 	enterDescription.value = description.textContent;
-	resetError(formProfile, validationSettings);
+	validationOfProfileForm.resetErrors();
 	openPopup(popupProfile);
 })
 
 buttonOpenPopupAddCard.addEventListener('click', () => {
+	validationOfCardForm.resetErrors();
 	openPopup(popupCard);
-	resetError(formCard, validationSettings);
 })
 
 
 
 
-
+function handleFullScreenImage(name, link) {
+	const popupImage = document.querySelector('.popup-image__image');
+	const popupImageDescription = document.querySelector('.popup-image__name');
+	popupImage.src = link;
+	popupImage.alt = name;
+	popupImageDescription.textContent = name;
+	openPopup(popupFigure)}
 
 
 
