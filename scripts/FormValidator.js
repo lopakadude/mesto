@@ -9,7 +9,7 @@ const validationSettings = {
 
 
 class FormValidator {
-	constructor(formElement,validationSettings) {
+	constructor(formElement, validationSettings) {
 		this._validationSettings = validationSettings;
 		this._formElement = formElement;
 		this._inputList = Array.from(this._formElement.querySelectorAll(this._validationSettings.inputSelector));
@@ -66,7 +66,7 @@ class FormValidator {
 	};
 
 
-	resetErrors = () => {
+	resetValidation = () => {
 		this._inputList.forEach((inputElement) => {
 			this._hideInputError(inputElement);
 		})
@@ -74,15 +74,14 @@ class FormValidator {
 	}
 
 	enableValidation = () => {
-			this._formElement.addEventListener('submit',(evt) => {
-				evt.preventDefault();
-			});
-			this._setEventListeners();
-
+		this._formElement.addEventListener('submit', (evt) => {
+			evt.preventDefault();
+		});
+		this._setEventListeners();
 	};
 }
 
-export {validationSettings, FormValidator}
+export { validationSettings, FormValidator }
 
 
 
