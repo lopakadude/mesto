@@ -59,9 +59,7 @@ const enableValidation = (validationSettings) => {
 };
 
 buttonOpenPopupEditProfile.addEventListener('click', () => {
-	const getUserInfo = userInfo.getUserInfo();
-	enterName.value = getUserInfo.name;
-	enterDescription.value = getUserInfo.job;
+	popupInfo.setInputValues(userInfo.getUserInfo());
 	formValidators['userData'].resetValidation();
 	popupInfo.openPopup();
 })

@@ -22,7 +22,7 @@ export default class Popup {
 
 	_handleClickOverlay(evt) {
 		if (evt.target === evt.currentTarget) {
-			this.closePopup(evt.currentTarget)
+			this.closePopup();
 		}
 	}
 
