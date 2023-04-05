@@ -1,6 +1,6 @@
 import './index.css';
 import {
-	buttonOpenPopupEditProfile, enterName, enterDescription, buttonOpenPopupAddCard, initialCards, validationSettings, formValidators
+	buttonOpenPopupEditProfile, buttonOpenPopupAddCard, initialCards, validationSettings, formValidators
 } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';

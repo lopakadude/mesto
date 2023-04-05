@@ -29,6 +29,3 @@ export const validationSettings = {
 	errorClass: 'popup__input-error_visible',
 };
 export const formValidators = {};
-
-export const enterName = document.querySelector('.popup__input_target_name');
-export const enterDescription = document.querySelector('.popup__input_target_description');
