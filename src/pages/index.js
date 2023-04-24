@@ -67,7 +67,7 @@ popupCard.setEventListeners();
 
 
 function createCard(inputValues) {
-	const cardElement = new Card(inputValues, '.elements__template', handleFullScreenImage, handleFormSubmitDeleteCard,addlike, removelike, userId)
+	const cardElement = new Card(inputValues, '.elements__template', handleFullScreenImage, handleFormSubmitDeleteCard, addlike, removelike, userId)
 	return cardElement.buildCard()
 }
 
@@ -75,19 +75,19 @@ function createCard(inputValues) {
 function addlike(cardId, cardElement) {
 	return api.likeCard(cardId)
 		.then((res) => { return res })
-		.then((res) => {cardElement.toggleLike(res)})
+		.then((res) => { cardElement.toggleLike(res) })
 		.catch((err) => {
 			console.log(err);
 		});
 };
 
-function removelike(cardId, cardElement) { 
+function removelike(cardId, cardElement) {
 	return api.unlikeCard(cardId)
-	.then((res) => { return res })
-	.then((res) => {cardElement.toggleLike(res)})
-	.catch((err) => {
-		console.log(err);
-})
+		.then((res) => { return res })
+		.then((res) => { cardElement.toggleLike(res) })
+		.catch((err) => {
+			console.log(err);
+		})
 };
 
 function handleFormSubmitCard(inputValues, buttonSubmit) {
@@ -127,14 +127,6 @@ function handleFormSubmitDeleteCard(cardId, cardElement) {
 	popupDeleteCard.openPopup();
 }
 
-
-
-
-
-
-
-
-
 function handleFormSubmitInfo(inputValues, buttonSubmit) {
 	renderLoading(buttonSubmit, true);
 	api.setUserInfo(inputValues)
@@ -149,8 +141,6 @@ function handleFormSubmitInfo(inputValues, buttonSubmit) {
 			renderLoading(buttonSubmit, false)
 		})
 }
-
-
 
 function handleFormSubmitAvatar(inputValues, buttonSubmit) {
 	renderLoading(buttonSubmit, true);
