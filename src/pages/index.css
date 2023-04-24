@@ -29,11 +29,13 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__mission/popup__mission.css);
+@import url(../blocks/popup/__mission/_content/popup__mission_content_delete.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__input-error/popup__input-error.css);
 @import url(../blocks/popup/__input-error/_visible/popup__input-error_visible.css);
+@import url(../blocks/popup/__input-error/_content/popup__input-error_content_avatar.css);
 @import url(../blocks/popup/__submit/popup__submit.css);
 @import url(../blocks/popup/__submit/_disabled/popup__submit_disabled.css);
 @import url(../blocks/popup/__close/popup__close.css);
@@ -42,5 +44,3 @@
 @import url(../blocks/popup-image/__figure/popup-image__figure.css);
 @import url(../blocks/popup-image/__image/popup-image__image.css);
 @import url(../blocks/popup-image/__name/popup-image__name.css);
-@import url(../blocks/popup-delete-card/__mission/popup-delete-card__mission.css);
-@import url(../blocks/popup-avatar/__input-error/popup-avatar__inpur-error.css);
