@@ -1,5 +1,5 @@
 export default class Card {
-	constructor(item, templateSelector, handleFullScreenImage, handleFormSubmitDeleteCard, addLike, removeLike, myId) {
+	constructor(item, templateSelector, handleFullScreenImage, handleFormSubmitDeleteCard, addLike, removeLike, userId) {
 		this._name = item.name;
 		this._link = item.link;
 		this._templateSelector = templateSelector;
@@ -7,7 +7,7 @@ export default class Card {
 		this._handleFormSubmitDeleteCard = handleFormSubmitDeleteCard;
 		this._owner = item.owner._id;
 		this._cardId = item._id;
-		this._myId = myId;
+		this._userId = userId;
 		this._likes = item.likes;
 		this._addLike = addLike;
 		this._removeLike = removeLike
@@ -21,7 +21,7 @@ export default class Card {
 
 	_setEventListeners = () => {
 		this._buttonLike.addEventListener('click', () => { this._handleSetLikes() })
-		this._deleteBtn.addEventListener('click', () => this._handleFormSubmitDeleteCard(this._cardId, this._cardElement));
+		this._deleteBtn.addEventListener('click', () => this._handleFormSubmitDeleteCard(this._cardId, this));
 		this._image.addEventListener('click', () => {
 			this._handleFullScreenImage(this._name, this._link)
 		})
@@ -29,28 +29,27 @@ export default class Card {
 
 	_isLiked() {
 		return this._likes.some(like => {
-			return like._id === this._myId;
+			return like._id === this._userId;
 		});
+	}
+
+	removeCardElement() {
+		this._cardElement.remove();
+		this._cardElement = null;
 	}
 
 	_handleSetLikes() {
 		if (this._isLiked()) {
-			this._removeLike(this._cardId)
-				.then((res) => {
-					this._countOfLikes.textContent = res.likes.length;
-					this._likes = res.likes;
-					this._buttonLike.classList.remove('elements__like_active');
-				})
-
+			this._removeLike(this._cardId, this)
 		} else {
-			this._addLike(this._cardId)
-				.then((res) => {
-					this._countOfLikes.textContent = res.likes.length;
-					this._likes = res.likes;
-					this._buttonLike.classList.add('elements__like_active')
-				})
-
+			this._addLike(this._cardId, this);
 		}
+	}
+
+	toggleLike(res) {
+		this._countOfLikes.textContent = res.likes.length;
+		this._likes = res.likes;
+		this._buttonLike.classList.toggle('elements__like_active')
 	}
 
 	renderLikes() {
@@ -73,7 +72,7 @@ export default class Card {
 		this.renderLikes();
 		this._setEventListeners();
 
-		if (this._owner === this._myId) {
+		if (this._owner === this._userId) {
 			return this._cardElement
 		}
 		else {
