@@ -1,0 +1,9 @@
+.popup-delete-card__mission{
+	margin-bottom: 2.34vw;
+	}
+
+	@media screen and (min-width:1280px)  {
+		.popup-delete-card__mission{
+			margin-bottom: 30px;
+			}
+	}
